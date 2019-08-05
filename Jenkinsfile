@@ -33,10 +33,10 @@ pipeline {
                 //    junit 'target/surefire-reports/**/*.xml' 
                // }
                 success {
-                    publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"SUCCESS", duration: 1
+                    publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"SUCCESS", duration: 1, hostName: "${IBM_DASH_HOSTNAME}", serviceName: "${IBM_DASH_SERVICENAME}"
                 }
                 failure {
-                    publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"FAIL", duration : 11
+                    publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"FAIL", duration : 11, hostName: "${IBM_DASH_HOSTNAME}", serviceName: "${IBM_DASH_SERVICENAME}"
                 }
             }
         }
