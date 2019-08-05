@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+        // You need to specify required environment variables first, they are going to be used for the following IBM Cloud DevOps steps
+        IBM_CLOUD_DEVOPS_CREDS = credentials('BM_CRED')
+    }
     tools {
         maven 'Maven1'
     }
@@ -14,12 +18,24 @@ pipeline {
         }
 
         stage ('Build') {
+            environment {
+                // get git commit from Jenkins
+                GIT_COMMIT = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+                GIT_BRANCH = 'master'
+                GIT_REPO = 'GIT_REPO_URL_PLACEHOLDER'
+            }
             steps {
                 sh 'mvn clean install' 
             }
             post {
+               // success {
+                //    junit 'target/surefire-reports/**/*.xml' 
+               // }
                 success {
-                    junit 'target/surefire-reports/**/*.xml' 
+                    publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"SUCCESS"
+                }
+                failure {
+                    publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"FAIL"
                 }
             }
         }
