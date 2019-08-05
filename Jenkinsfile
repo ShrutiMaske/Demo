@@ -3,7 +3,7 @@ pipeline {
     environment {
         // You need to specify required environment variables first, they are going to be used for the following IBM Cloud DevOps steps
         //BM_CRED = '7ff51d39-65f2-4ae4-93b0-14505d18750e'
-        credentialsId = '7ff51d39-65f2-4ae4-93b0-14505d18750e'
+        credentialsId = credentials('7ff51d39-65f2-4ae4-93b0-14505d18750e')
     }
     tools {
         maven 'Maven1'
