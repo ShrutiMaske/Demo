@@ -1,5 +1,5 @@
 node{
-    def root = tool name: 'Maven1', type: 'java'
+    def root = tool name: 'Maven1', type: 'maven'
     
     ws("${HOME}/agent/jobs/${JOB_NAME}/builds/${BUILD_ID}/") {               
 
