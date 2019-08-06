@@ -17,7 +17,7 @@ node{
                 stage('Build') {
                    withEnv(["GIT_COMMIT=${gitCommit}",
                          'GIT_BRANCH=master',
-                         "GIT_REPO='GIT_REPO_URL_PLACEHOLDER' {
+                         "GIT_REPO='GIT_REPO_URL_PLACEHOLDER' 
                     try {
                          sh 'mvn clean install' 
 
@@ -27,7 +27,7 @@ publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRe
                     catch (Exception e) {
 publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"FAIL", duration : 11, hostName: "local-dash.gravitant.net", serviceName: "Hello"
                     }
-                        }  
+                         
                     }
             }
             }
