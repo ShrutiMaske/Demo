@@ -1,50 +1,33 @@
-pipeline {
-    agent any
-    environment {
-        // You need to specify required environment variables first, they are going to be used for the following IBM Cloud DevOps steps
-        //BM_CRED = '7ff51d39-65f2-4ae4-93b0-14505d18750e'
-        IBM_CLOUD_DEVOPS_CREDS = credentials('7ff51d39-65f2-4ae4-93b0-14505d18750e')
-       // IBM_CLOUD_DEVOPS_API_KEY = '7ff51d39-65f2-4ae4-93b0-14505d18750e'
-    }
-    tools {
-        maven 'Maven1'
-    }
-    stages {
-        stage ('Initialize') {
-            steps {
-                sh '''
+node{
+    def root = tool name: 'Maven1', type: 'java'
+    
+    ws("${HOME}/agent/jobs/${JOB_NAME}/builds/${BUILD_ID}/") {               
+
+            stage('Initialize') {
+               sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
-                    
                 '''
             }
-        }
 
-        stage ('Build') {
-            environment {
-                // get git commit from Jenkins
-                GIT_COMMIT = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
-                GIT_BRANCH = 'master'
-                GIT_REPO = 'GIT_REPO_URL_PLACEHOLDER'
-                IBM_CLOUD_DEVOPS_CREDS = credentials('7ff51d39-65f2-4ae4-93b0-14505d18750e')
+
+            withCredentials([$class: 'UsernamePasswordMultiBinding', credentialsId: '7ff51d39-65f2-4ae4-93b0-14505d18750e',
+                          usernameVariable: 'IBM_CLOUD_DEVOPS_CREDS_USR', passwordVariable: 'IBM_CLOUD_DEVOPS_CREDS_PSW']]) {
+                stage('Build') {
+                   withEnv(["GIT_COMMIT=${gitCommit}",
+                         'GIT_BRANCH=master',
+                         "GIT_REPO='GIT_REPO_URL_PLACEHOLDER' {
+                    try {
+                         sh 'mvn clean install' 
+
+                        // use "publishBuildRecord" method to publish build record
+publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"SUCCESS", duration: 1, hostName: "local-dash.gravitant.net", serviceName: "Hello"
+                    }
+                    catch (Exception e) {
+publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"FAIL", duration : 11, hostName: "local-dash.gravitant.net", serviceName: "Hello"
+                    }
+                        }  
+                    }
             }
-            steps {
-                sh 'mvn clean install' 
-                echo "Creds = ${IBM_CLOUD_DEVOPS_CREDS}"
-                    echo "USer = ${IBM_CLOUD_DEVOPS_CREDS_USR}"
-                    echo "Pwd = ${IBM_CLOUD_DEVOPS_CREDS_PSW}"
             }
-            post {
-               // success {
-                //    junit 'target/surefire-reports/**/*.xml' 
-               // }
-                success {
-                    publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"SUCCESS", duration: 1, hostName: "local-dash.gravitant.net", serviceName: "Hello"
-                }
-                failure {
-                    publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"FAIL", duration : 11, hostName: "local-dash.gravitant.net", serviceName: "Hello"
-                }
-            }
-        }
-    }
 }
