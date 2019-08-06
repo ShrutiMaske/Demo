@@ -11,13 +11,12 @@ node{
             }
 
 
-            withCredentials([$class: 'UsernamePasswordMultiBinding', credentialsId: '7ff51d39-65f2-4ae4-93b0-14505d18750e',
-                          usernameVariable: 'IBM_CLOUD_DEVOPS_CREDS_USR', passwordVariable: 'IBM_CLOUD_DEVOPS_CREDS_PSW']) {
-               def gitCommit = sh(returnStdout: true, script: "git rev-parse HEAD").trim()
+            withCredentials([$class: 'UsernamePasswordMultiBinding', credentialsId: 'BM_CRED',
+                          usernameVariable: 'IBM_CLOUD_DEVOPS_CREDS_USR', passwordVariable: 'IBM_CLOUD_DEVOPS_CREDS_PSW']]) {
                 stage('Build') {
                    withEnv(["GIT_COMMIT=${gitCommit}",
                          'GIT_BRANCH=master',
-                         "GIT_REPO='GIT_REPO_URL_PLACEHOLDER' 
+                         "GIT_REPO=https://github.com/xunrongl/DemoDRA-1"]) {
                     try {
                          sh 'mvn clean install' 
 
@@ -27,8 +26,10 @@ publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRe
                     catch (Exception e) {
 publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"FAIL", duration : 11, hostName: "local-dash.gravitant.net", serviceName: "Hello"
                     }
-                         
-                    }
+                    
+                    
             }
             }
+}
+    }
 }
