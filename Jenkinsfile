@@ -9,6 +9,15 @@ node{
                     echo "M2_HOME = ${M2_HOME}"
                 '''
             }
+        
+        stage('Checkout') {
+                
+                    git(
+                        url: 'https://github.com/ShrutiMaske/Demo.git',
+                        branch: "master"
+                    )
+                
+            }
 
 
             withCredentials([usernamePassword(credentialsId: '7ff51d39-65f2-4ae4-93b0-14505d18750e', 
