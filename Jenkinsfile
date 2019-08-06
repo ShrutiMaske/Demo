@@ -13,6 +13,7 @@ node{
 
             withCredentials([$class: 'UsernamePasswordMultiBinding', credentialsId: '7ff51d39-65f2-4ae4-93b0-14505d18750e',
                           usernameVariable: 'IBM_CLOUD_DEVOPS_CREDS_USR', passwordVariable: 'IBM_CLOUD_DEVOPS_CREDS_PSW']]) {
+               def gitCommit = sh(returnStdout: true, script: "git rev-parse HEAD").trim()
                 stage('Build') {
                    withEnv(["GIT_COMMIT=${gitCommit}",
                          'GIT_BRANCH=master',
