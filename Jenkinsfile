@@ -15,9 +15,7 @@ pipeline {
                 sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
-                    echo "Creds = ${IBM_CLOUD_DEVOPS_CREDS}"
-                    echo "USer = ${IBM_CLOUD_DEVOPS_CREDS_USR}"
-                    echo "Pwd = ${IBM_CLOUD_DEVOPS_CREDS_PSW}"
+                    
                 '''
             }
         }
@@ -28,9 +26,13 @@ pipeline {
                 GIT_COMMIT = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
                 GIT_BRANCH = 'master'
                 GIT_REPO = 'GIT_REPO_URL_PLACEHOLDER'
+                IBM_CLOUD_DEVOPS_CREDS = credentials('7ff51d39-65f2-4ae4-93b0-14505d18750e')
             }
             steps {
                 sh 'mvn clean install' 
+                echo "Creds = ${IBM_CLOUD_DEVOPS_CREDS}"
+                    echo "USer = ${IBM_CLOUD_DEVOPS_CREDS_USR}"
+                    echo "Pwd = ${IBM_CLOUD_DEVOPS_CREDS_PSW}"
             }
             post {
                // success {
