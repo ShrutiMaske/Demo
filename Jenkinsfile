@@ -29,7 +29,7 @@ node{
                          "GIT_REPO=https://github.com/xunrongl/DemoDRA-1"]) {
                     try {
                          sh 'mvn clean install' 
-
+                            junit 'target/surefire-reports/**/*.xml'
                         // use "publishBuildRecord" method to publish build record
 publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"SUCCESS", duration: 1, hostName: "local-dash.gravitant.net", serviceName: "Hello"
                     }
@@ -39,9 +39,10 @@ publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRe
                     
                     
             }
+                    
             }
             stage('Unit Test and Code Coverage') {
-                  junit 'target/surefire-reports/**/*.xml'
+                  
                     // use "publishTestResult" method to publish test result
 //publishTestResult type:'unit', fileLocation: '/var/jenkins_home/workspace/Jenkins-Github/simpleTest.json'
                     publishTestResult fileLocation: 'jobs/testGit/master/builds/53/*.xml', type: "unit", serviceName: "ServiceNameTest", hostName: "local-dash.gravitant.net", resultType: "unit"
