@@ -44,7 +44,7 @@ publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRe
                    // junit 'target/surefire-reports/**/*.xml'
                     // use "publishTestResult" method to publish test result
 //publishTestResult type:'unit', fileLocation: '/var/jenkins_home/workspace/Jenkins-Github/simpleTest.json'
-                    publishTestResult fileLocation: '', type: "unit", serviceName: "ServiceNameTest", hostName: "local-dash.gravitant.net", resultType: "unit"
+                    publishTestResult fileLocation: './simpleTest.json', type: "unit", serviceName: "ServiceNameTest", hostName: "local-dash.gravitant.net", resultType: "unit"
                 } 
 }
     }
