@@ -44,7 +44,7 @@ publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRe
                     //junit 'target/surefire-reports/**/*.xml'
                     // use "publishTestResult" method to publish test result
 //publishTestResult type:'unit', fileLocation: '/var/jenkins_home/workspace/Jenkins-Github/simpleTest.json'
-                    publishTestResult type:'unit', fileLocation: '/var/jenkins_home/workspace/Jenkins-Github/target/surefire-reports/TEST-com.mycompany.app.AppTest.xml
+                    publishTestResult type:'unit', fileLocation: '/var/jenkins_home/workspace/Jenkins-Github/target/surefire-reports/TEST-com.mycompany.app.AppTest.xml'
                 }
 }
     }
