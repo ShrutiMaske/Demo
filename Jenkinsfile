@@ -43,8 +43,8 @@ publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRe
                 stage('Unit Test and Code Coverage') {
                     junit 'target/surefire-reports/**/*.xml'
                     // use "publishTestResult" method to publish test result
-                    publishTestResult type:'unit', fileLocation: './mochatest.json'
-                    publishTestResult type:'code', fileLocation: './tests/coverage/reports/coverage-summary.json'
+                    publishTestResult type:'unit', fileLocation: '/var/jenkins_home/workspace/Jenkins-Github/simpleTest.json'
+                    publishTestResult type:'unit', fileLocation: '/var/jenkins_home/workspace/Jenkins-Github/target/surefire-reports/**/*.xml'
                 }
 }
     }
