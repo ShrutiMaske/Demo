@@ -45,7 +45,7 @@ publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRe
                     // use "publishTestResult" method to publish test result
 //publishTestResult type:'unit', fileLocation: '/var/jenkins_home/workspace/Jenkins-Github/simpleTest.json'
                     publishTestResult fileLocation: 'jobs/testGit/master/builds/53/*.xml', type: "unit", serviceName: "ServiceNameTest", hostName: "local-dash.gravitant.net", resultType: "unit"
-                //}  
+                }  
 }
     }
 }
