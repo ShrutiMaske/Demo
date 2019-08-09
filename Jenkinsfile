@@ -49,10 +49,10 @@ node{
                          sh 'mvn package' 
                            // junit 'target/surefire-reports/**/*.xml'
                         // use "publishBuildRecord" method to publish build record
-publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"SUCCESS", duration: 1, hostName: "local-dash.gravitant.net", serviceName: "TestService00"
+publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"SUCCESS", duration: 1, hostName: "local-dash.gravitant.net", serviceName: "Serve"
                     }
                     catch (Exception e) {
-publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"FAIL", duration : 11, hostName: "local-dash.gravitant.net", serviceName: "TestService00"
+publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"FAIL", duration : 11, hostName: "local-dash.gravitant.net", serviceName: "Serve"
                     }
                     
                     
@@ -68,7 +68,7 @@ publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRe
                   
                     // use "publishTestResult" method to publish test result
 //publishTestResult type:'unit', fileLocation: '/var/jenkins_home/workspace/Jenkins-Github/simpleTest.json'
-                    publishTestResult fileLocation: 'target/surefire-reports/', type: "unit", serviceName: "ServiceNameTest", hostName: "local-dash.gravitant.net", resultType: "junit"
+                    publishTestResult fileLocation: 'target/surefire-reports/', type: "unit", serviceName: "Serve", hostName: "local-dash.gravitant.net", resultType: "junit"
                 } 
                 }
     }
