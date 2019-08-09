@@ -1,8 +1,26 @@
 node{
-    def root = tool name: '3.5.4', type: 'mvn'
+   // def root = tool name: '3.5.4', type: 'mvn'
+     //String jdktool = tool name: "jdk8", type: 'hudson.model.JDK'
+    String jdktool = tool name: "Java_8", type: 'hudson.model.JDK'
+    def mvnHome = tool name: '3.5.4'
+
+    /* Set JAVA_HOME, and special PATH variables. */
+    List javaEnv = [
+        "PATH+MVN=${jdktool}/bin:${mvnHome}/bin",
+        "M2_HOME=${mvnHome}",
+        "JAVA_HOME=${jdktool}"
+    ]
+    
+     withEnv(javaEnv) {
+    stage ('Initialize') {
+        sh '''
+            echo "PATH = ${PATH}"
+            echo "M2_HOME = ${M2_HOME}"
+        '''
+    }
     
     ws("${HOME}/agent/jobs/${JOB_NAME}/builds/${BUILD_ID}/") {               
-
+            
             stage('Initialize') {
                sh '''
                     echo "PATH = ${PATH}"
@@ -49,4 +67,5 @@ publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRe
                 }  
 }
     }
+}
 }
