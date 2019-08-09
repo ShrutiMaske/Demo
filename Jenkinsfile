@@ -1,5 +1,5 @@
 node{
-    def root = tool name: 'Maven1', type: 'maven'
+    def root = tool name: '3.5.4', type: 'mvn'
     
     ws("${HOME}/agent/jobs/${JOB_NAME}/builds/${BUILD_ID}/") {               
 
@@ -28,7 +28,7 @@ node{
                          'GIT_BRANCH=master',
                          "GIT_REPO=https://github.com/xunrongl/DemoDRA-1"]) {
                     try {
-                         sh 'package' 
+                         sh 'mvn package' 
                            // junit 'target/surefire-reports/**/*.xml'
                         // use "publishBuildRecord" method to publish build record
 publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"SUCCESS", duration: 1, hostName: "local-dash.gravitant.net", serviceName: "TestService00"
