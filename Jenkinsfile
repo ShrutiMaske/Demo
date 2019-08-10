@@ -42,9 +42,9 @@ node{
                 passwordVariable: 'IBM_CLOUD_DEVOPS_CREDS_PSW', usernameVariable: 'IBM_CLOUD_DEVOPS_CREDS_USR')]) {
                 def gitCommit = sh(returnStdout: true, script: "git rev-parse HEAD").trim()
                 stage('Build') {
-                   withEnv(["GIT_COMMIT=${gitCommit}",
-                         'GIT_BRANCH=master',
-                         "GIT_REPO=https://github.com/xunrongl/DemoDRA-1"]) {
+                   withEnv(["GIT_COMMIT=${gitCommit}"]){
+                //         'GIT_BRANCH=master',
+                 //        "GIT_REPO=https://github.com/xunrongl/DemoDRA-1"]) {
                     try {
                          sh 'mvn package' 
                            // junit 'target/surefire-reports/**/*.xml'
