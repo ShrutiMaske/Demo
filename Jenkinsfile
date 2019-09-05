@@ -38,7 +38,7 @@ node{
             }
 
 
-            withCredentials([usernamePassword(credentialsId: '7ff51d39-65f2-4ae4-93b0-14505d18750e', 
+            withCredentials([usernamePassword(credentialsId: '82ff0727-9418-4962-b96a-cb031dd19fc1', 
                 passwordVariable: 'IBM_CLOUD_DEVOPS_CREDS_PSW', usernameVariable: 'IBM_CLOUD_DEVOPS_CREDS_USR')]) {
                 def gitCommit = sh(returnStdout: true, script: "git rev-parse HEAD").trim()
                 stage('Build') {
@@ -65,7 +65,7 @@ publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRe
             }
              
 }
-        withCredentials([usernamePassword(credentialsId: '945fe79a-5624-46d5-9afa-479d77c04d79', 
+        withCredentials([usernamePassword(credentialsId: 'f6c4700a-89d1-4532-936f-d8e3fd2d0600', 
                 passwordVariable: 'IBM_CLOUD_DEVOPS_CREDS_PSW', usernameVariable: 'IBM_CLOUD_DEVOPS_CREDS_USR')]) {
 
                     stage('Unit Test and Code Coverage') {
