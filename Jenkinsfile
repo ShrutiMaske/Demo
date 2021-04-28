@@ -38,7 +38,7 @@ node{
             }
 
 
-            withCredentials([usernamePassword(credentialsId: '82ff0727-9418-4962-b96a-cb031dd19fc1', 
+            withCredentials([usernamePassword(credentialsId: '9cf91d78-8760-4775-88b6-2185dba39103', 
                 passwordVariable: 'IBM_CLOUD_DEVOPS_CREDS_PSW', usernameVariable: 'IBM_CLOUD_DEVOPS_CREDS_USR')]) {
                 def gitCommit = sh(returnStdout: true, script: "git rev-parse HEAD").trim()
                 stage('Build') {
@@ -50,12 +50,12 @@ node{
                            // junit 'target/surefire-reports/**/*.xml'
                         // use "publishBuildRecord" method to publish build record
 //publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"SUCCESS", duration: 1, hostName: "local-dash.gravitant.net", serviceName: "Serve"
-publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"SUCCESS", hostName: "local-dash.gravitant.net", serviceName: "Serve"
+publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"SUCCESS", hostName: "local-core-dash.gravitant.net", serviceName: "Serve"
   
                     }
                     catch (Exception e) {
 //publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"FAIL", duration : 11, hostName: "local-dash.gravitant.net", serviceName: "Serve"
-publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"FAIL", hostName: "local-dash.gravitant.net", serviceName: "Serve"
+publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"FAIL", hostName: "local-core-dash.gravitant.net", serviceName: "Serve"
   
                     }
                     
@@ -65,14 +65,14 @@ publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRe
             }
              
 }
-        withCredentials([usernamePassword(credentialsId: 'f6c4700a-89d1-4532-936f-d8e3fd2d0600', 
+        withCredentials([usernamePassword(credentialsId: '897c1b2f-83d8-4dda-86bc-780f7b2fef23', 
                 passwordVariable: 'IBM_CLOUD_DEVOPS_CREDS_PSW', usernameVariable: 'IBM_CLOUD_DEVOPS_CREDS_USR')]) {
 
                     stage('Unit Test and Code Coverage') {
                   
                     // use "publishTestResult" method to publish test result
 //publishTestResult type:'unit', fileLocation: '/var/jenkins_home/workspace/Jenkins-Github/simpleTest.json'
-                    publishTestResult fileLocation: 'target/surefire-reports/', type: "unit", serviceName: "Serve", hostName: "local-dash.gravitant.net", resultType: "junit"
+                    publishTestResult fileLocation: 'target/surefire-reports/', type: "unit", serviceName: "Serve", hostName: "local-core-dash.gravitant.net", resultType: "junit"
                 } 
                 }
     }
