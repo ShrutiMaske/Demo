@@ -65,14 +65,14 @@ publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRe
             }
              
 }
-        withCredentials([usernamePassword(credentialsId: '897c1b2f-83d8-4dda-86bc-780f7b2fef23', 
+        withCredentials([usernamePassword(credentialsId: '51545393-74c7-42fa-89cf-1bb4f62d0209', 
                 passwordVariable: 'IBM_CLOUD_DEVOPS_CREDS_PSW', usernameVariable: 'IBM_CLOUD_DEVOPS_CREDS_USR')]) {
 
                     stage('Unit Test and Code Coverage') {
                   
                     // use "publishTestResult" method to publish test result
 //publishTestResult type:'unit', fileLocation: '/var/jenkins_home/workspace/Jenkins-Github/simpleTest.json'
-                    publishTestResult fileLocation: 'target/surefire-reports/', type: "unit", serviceName: "Serve", hostName: "local-core-dash.gravitant.net", resultType: "junit"
+                    publishTestResult fileLocation: 'target/surefire-reports/', type: "unit", serviceName: "Serve", hostName: "local-core.gravitant.net", resultType: "junit"
                 } 
                 }
     }
