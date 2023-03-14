@@ -38,7 +38,7 @@ node{
             }
 
 
-            withCredentials([usernamePassword(credentialsId: '	9cf91d78-8760-4775-88b6-2185dba39103', 
+            withCredentials([usernamePassword(credentialsId: '84048301-d1fb-4315-9e93-52405de7fdc7', 
                 passwordVariable: 'IBM_CLOUD_DEVOPS_CREDS_PSW', usernameVariable: 'IBM_CLOUD_DEVOPS_CREDS_USR')]) {
                 def gitCommit = sh(returnStdout: true, script: "git rev-parse HEAD").trim()
                 stage('Build') {
@@ -50,12 +50,12 @@ node{
                            // junit 'target/surefire-reports/**/*.xml'
                         // use "publishBuildRecord" method to publish build record
 //publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"SUCCESS", duration: 1, hostName: "local-dash.gravitant.net", serviceName: "Serve"
-publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"SUCCESS", hostName: "local-core.gravitant.net", serviceName: "Serve"
+publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"SUCCESS", hostName: "mcmp-di-release12.kyndryl-cloud.com", serviceName: "Shruti_test1"
   
                     }
                     catch (Exception e) {
 //publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"FAIL", duration : 11, hostName: "local-dash.gravitant.net", serviceName: "Serve"
-publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"FAIL", hostName: "local-core.gravitant.net", serviceName: "Serve"
+publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"FAIL", hostName: "mcmp-di-release12.kyndryl-cloud.com", serviceName: "Shruti_test1"
   
                     }
                     
@@ -72,7 +72,7 @@ publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRe
                   
                     // use "publishTestResult" method to publish test result
 //publishTestResult type:'unit', fileLocation: '/var/jenkins_home/workspace/Jenkins-Github/simpleTest.json'
-                    publishTestResult fileLocation: 'target/surefire-reports/', type: "unit", serviceName: "Serve", hostName: "local-core.gravitant.net", resultType: "junit"
+                    publishTestResult fileLocation: 'target/surefire-reports/', type: "unit", serviceName: "Shruti_test1", hostName: "mcmp-di-release12.kyndryl-cloud.com", resultType: "junit"
                 } 
                 }
     }
