@@ -3,7 +3,7 @@ node{
      //String jdktool = tool name: "jdk11", type: 'hudson.model.JDK'
    echo "Entering..."
     String jdktool = tool name: "Java_11", type: 'hudson.model.JDK'
-    def mvnHome = tool name: '3.8.8'
+    def mvnHome = tool name: 'jenkins_plugin_mvn'
 
     /* Set JAVA_HOME, and special PATH variables. */
     List javaEnv = [
