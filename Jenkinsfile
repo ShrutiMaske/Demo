@@ -1,8 +1,8 @@
 node{
-   // def root = tool name: '3.5.4', type: 'mvn'
-     //String jdktool = tool name: "jdk8", type: 'hudson.model.JDK'
-    String jdktool = tool name: "Java_8", type: 'hudson.model.JDK'
-    def mvnHome = tool name: '3.5.4'
+   // def root = tool name: '3.8.8', type: 'mvn'
+     //String jdktool = tool name: "jdk11", type: 'hudson.model.JDK'
+    String jdktool = tool name: "Java_11", type: 'hudson.model.JDK'
+    def mvnHome = tool name: '3.8.8'
 
     /* Set JAVA_HOME, and special PATH variables. */
     List javaEnv = [
