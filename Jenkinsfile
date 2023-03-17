@@ -1,6 +1,7 @@
 node{
    // def root = tool name: '3.8.8', type: 'mvn'
      //String jdktool = tool name: "jdk11", type: 'hudson.model.JDK'
+   echo "Entering..."
     String jdktool = tool name: "Java_11", type: 'hudson.model.JDK'
     def mvnHome = tool name: '3.8.8'
 
