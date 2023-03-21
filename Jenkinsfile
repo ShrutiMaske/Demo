@@ -51,12 +51,12 @@ node{
                            // junit 'target/surefire-reports/**/*.xml'
                         // use "publishBuildRecord" method to publish build record
 //publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"SUCCESS", duration: 1, hostName: "local-dash.gravitant.net", serviceName: "Serve"
-publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"SUCCESS", hostName: "mcmp-di-release12.kyndryl-cloud.com", serviceName: "Shruti_test1"
+publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"SUCCESS", hostName: "mcmp-di-release12.kyndryl-cloud.com/dash", serviceName: "Shruti_test1"
   
                     }
                     catch (Exception e) {
 //publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"FAIL", duration : 11, hostName: "local-dash.gravitant.net", serviceName: "Serve"
-publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"FAIL", hostName: "mcmp-di-release12.kyndryl-cloud.com", serviceName: "Shruti_test1"
+publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRepo: "${GIT_REPO}", result:"FAIL", hostName: "mcmp-di-release12.kyndryl-cloud.com/dash", serviceName: "Shruti_test1"
   
                     }
                     
@@ -73,7 +73,7 @@ publishBuildRecord gitBranch: "${GIT_BRANCH}", gitCommit: "${GIT_COMMIT}", gitRe
                   
                     // use "publishTestResult" method to publish test result
 //publishTestResult type:'unit', fileLocation: '/var/jenkins_home/workspace/Jenkins-Github/simpleTest.json'
-                    publishTestResult fileLocation: 'target/surefire-reports/', type: "unit", serviceName: "Shruti_test1", hostName: "mcmp-di-release12.kyndryl-cloud.com", resultType: "junit"
+                    publishTestResult fileLocation: 'target/surefire-reports/', type: "unit", serviceName: "Shruti_test1", hostName: "mcmp-di-release12.kyndryl-cloud.com/dash", resultType: "junit"
                 } 
                 }
     }
